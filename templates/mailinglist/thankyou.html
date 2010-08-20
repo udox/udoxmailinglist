@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load block_tags %}
+
+{% block title %}{{ block.super }} : Sign Up{% endblock %}
+
+{% block body %}
+    {% include 'mailinglist/thankyou_message.html' %}
+{% endblock %}

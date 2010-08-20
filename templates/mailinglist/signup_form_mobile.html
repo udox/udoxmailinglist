@@ -1,0 +1,49 @@
+{% regroup interests by group as interests_by_group %}
+<form action="/signup/mobile/" id="signup_form" method="POST" class="signup">
+    <fieldset class="left">
+        <div class="field">
+            {{ form.name.errors }}
+            <label for="id_name">Name<em class="required">*</em></label>
+            {{ form.name }}
+        </div>
+        <div class="field">
+            {{ form.email.errors }}
+            <label for="id_email">Email<em class="required">*</em></label>
+            {{ form.email }}
+        </div>
+        <div class="field">
+            {{ form.dob.errors }}
+            <label for="id_dob">DOB</label>
+            {{ form.dob }}
+        </div>
+        <div class="field">
+            {{ form.mobile.errors }}
+            <label for="id_mobile">Mobile</label>
+            {{ form.mobile }}
+        </div>
+    </fieldset>
+    
+    <fieldset class="right">
+        <div class="field sex"><nobr>{{ form.sex.errors }}</nobr></div>
+        <div class="field sex">
+            <label for="id_sex">Sex:</label>
+            {{ form.sex }}
+        </div>
+        <div class="field"><nobr>{{ form.interest_items.errors }}</nobr></div>
+        {% for group in interests_by_group %}
+        <fieldset class="choice_group">
+            <legend>{{ group.grouper.title }}</legend>
+            <ul>
+                {% for item in group.list %}
+                <li><label for="id_interest_items_{{ item.pk }}"><input type="checkbox" name="interest_items" value="{{ item.pk }}" id="id_interest_items_{{ item.pk }}" />{{ item.title }}</label></li>
+                {% endfor %}
+            </ul>
+        </fieldset>
+        {% endfor %}
+    </fieldset>
+
+    <div class="submit">
+        <input type="image" value="submit" src="{{ MEDIA_URL }}images/mailinglist/sign_up_btn.png" value="Send message" alt="sign up" title="sign up" class="nav" />
+        <p><em class="required">*</em>Required fields. Providing further details will help us send you information that is more relevant to you!</p>
+    </div>
+</form>

@@ -1,0 +1,17 @@
+{% extends 'base_mobile.html' %}
+{% load block_tags %}
+
+{% block title %}{{ block.super }} : Newsletter Sign Up{% endblock %}
+
+{% block body %}
+<div class="header">
+		<div class="dark_item_top"></div>
+		<div class="dark_item_mid_expand">
+			<strong>SIGN UP</strong><br />
+				To Recieve updates on what's new.<br /><br />
+        {% include 'mailinglist/signup_form_mobile.html' %}
+    </div>
+		<div class="dark_item_base"></div>
+	</div>
+{% endblock %}
+
